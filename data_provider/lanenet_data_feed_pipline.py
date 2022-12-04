@@ -40,7 +40,8 @@ class LaneNetDataProducer(object):
         self._test_example_index_file_path = CFG.DATASET.TEST_FILE_LIST
         self._val_example_index_file_path = CFG.DATASET.VAL_FILE_LIST
 
-        self._gt_image_dir = ops.join(self._dataset_dir, 'gt_image')
+        # self._gt_image_dir = ops.join(self._dataset_dir, 'gt_image')
+        self._gt_image_dir = ops.join(self._dataset_dir, 'image')
         self._gt_binary_image_dir = ops.join(self._dataset_dir, 'gt_binary_image')
         self._gt_instance_image_dir = ops.join(self._dataset_dir, 'gt_instance_image')
 
@@ -250,7 +251,8 @@ class LaneNetDataFeeder(object):
         assert ops.exists(tfrecords_file_paths), '{:s} not exist'.format(tfrecords_file_paths)
 
         sample_counts = 0
-        sample_counts += sum(1 for _ in tf.python_io.tf_record_iterator(tfrecords_file_paths))
+        # sample_counts += sum(1 for _ in tf.python_io.tf_record_iterator(tfrecords_file_paths))
+        sample_counts += sum(1 for _ in tf.compat.v1.python_io.tf_record_iterator(tfrecords_file_paths))
         if self._dataset_flags == 'train':
             num_batchs = int(np.ceil(sample_counts / self._train_batch_size))
         elif self._dataset_flags == 'val':

@@ -8,6 +8,8 @@
 """
 Train lanenet script
 """
+import sys
+sys.path.append('/Users/admin/data/test_project/autocar/car_lane/lanenet-lane-detection')
 from trainner import tusimple_lanenet_single_gpu_trainner as single_gpu_trainner
 from trainner import tusimple_lanenet_multi_gpu_trainner as multi_gpu_trainner
 from local_utils.log_util import init_logger

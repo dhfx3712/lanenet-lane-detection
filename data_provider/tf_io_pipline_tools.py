@@ -58,7 +58,8 @@ def write_example_tfrecords(gt_images_paths, gt_binary_images_paths, gt_instance
 
     LOG.info('Writing {:s}....'.format(tfrecords_path))
 
-    with tf.python_io.TFRecordWriter(tfrecords_path) as _writer:
+    # with tf.python_io.TFRecordWriter(tfrecords_path) as _writer:
+    with tf.compat.v1.python_io.TFRecordWriter(tfrecords_path) as _writer:
         for _index, _gt_image_path in enumerate(gt_images_paths):
 
             # prepare gt image
